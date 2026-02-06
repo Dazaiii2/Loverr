@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>For You ❤️</title>
+    <style>
+        :root { --pink: #ff4d6d; --red: #ff3b30; --green: #34c759; }
+
+        body {
+            margin: 0; padding: 0; display: flex; justify-content: center;
+            align-items: center; height: 100vh; background-color: #fff;
+            font-family: -apple-system, system-ui, sans-serif; overflow: hidden;
+        }
+
+        .page { display: none; width: 90%; max-width: 400px; text-align: center; animation: fadeIn 0.4s; }
+        .active { display: block; }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        .main-img { width: 180px; height: 180px; object-fit: contain; margin-bottom: 20px; }
+        
+        /* Buttons */
+        .btn-container { display: flex; justify-content: center; gap: 15px; margin-top: 20px; }
+        button {
+            padding: 15px 35px; font-size: 1.1rem; border-radius: 50px; border: none;
+            cursor: pointer; font-weight: bold; transition: 0.2s; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        
+        .btn-yes { background-color: var(--green); color: white; }
+        .btn-no { background-color: var(--red); color: white; }
+        .btn-back { background: #333; color: white; margin-top: 20px; width: 80%; }
+
+        /* Gift Grid */
+        .gift-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 20px; }
+        .gift-box { background: #fff0f3; font-size: 2.5rem; padding: 20px 0; border-radius: 20px; cursor: pointer; }
+
+        .card { background: white; padding: 20px; border-radius: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        
+        /* Photo Album Gallery */
+        .gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; max-height: 300px; overflow-y: auto; padding: 10px; }
+        .gallery img { width: 100%; border-radius: 10px; object-fit: cover; aspect-ratio: 1/1; }
+
+        /* Hearts */
+        .heart { position: fixed; top: -10vh; font-size: 20px; animation: fall 3s linear forwards; z-index: 100; }
+        @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
+    </style>
+</head>
+<body>
+
+    <div id="music-player" style="position: absolute; visibility: hidden;">
+        <iframe id="spotify-frame" src="http://googleusercontent.com/spotify.com/6" width="100%" height="80" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+    </div>
+
+    <div id="page1" class="page active">
+        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpueG56ZGR6Z3Z4bmZ6Z3Z4bmZ6Z3Z4bmZ6Z3Z4bmZ6Z3Z4JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/K6jSj8kkjN6Z3XJ2bS/giphy.gif" class="main-img">
+        <h1>Will you be my Valentine???</h1>
+        <div class="btn-container">
+            <button class="btn-yes" onclick="handleYes()">Yes</button>
+            <button class="btn-no" onclick="goNo()">No</button>
+        </div>
+    </div>
+
+    <div id="page-no" class="page">
+        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNmZ0ZmtuMzZ6eGZ6Z3Z4bmZ6Z3Z4bmZ6Z3Z4bmZ6Z3Z4bmZ6JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/cmCHuk53AiFYL9m_Y3/giphy.gif" class="main-img">
+        <h1 style="color: var(--pink);">I don't accept No! ❤️</h1>
+        
+            
+          
+        </nav>>Go Back</button>
+        </div>
+    </div>
+    </div>
+
+    <div id="page-gifts" class="page">
+        <h1>Yay! Choose a Gift! 🎁</h1>
+        <div class="gift-grid">
+            <div class="gift-box" onclick="nav('res-flowers')">💐</div>
+            <div class="gift-box" onclick="nav('res-album')">📸</div>
+            <div class="gift-box" onclick="nav('res-letter')">✉️</div>
+        </div>
+    </div>
+
+    <div id="res-flowers" class="page">
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9?w=500" style="width:100%; border-radius:20px;">
+            <h3>For You 💐</h3>
+            <button class="btn-back" onclick="nav('page-gifts')">Go Back</button>
+        </div>
+    </div>
+
+    <div id="res-album" class="page">
+        <div class="card">
+            <h3>Our Memories 📸</h3>
+            <div class="gallery">
+                <img src="https://photos.app.goo.gl/zjp7nLtqt6qjkSkn8" alt="Us 1">
+                <img src="https://photos.app.goo.gl/zjp7nLtqt6qjkSkn8" alt="Us 2">
+                <img src="https://images.unsplash.com/photo-1529634806980-85c3dd6d3dca?w=300" alt="Us 3">
+                <img src="https://photos.app.goo.gl/zjp7nLtqt6qjkSkn8" alt="Us 4">
+            </div>
+            <button class="btn-back" onclick="nav('page-gifts')">Go Back</button>
+        </div>
+    </div>
+
+    <div id="res-letter" class="page">
+        <div class="card">
+            <h3>My Note ✉️</h3>
+            <p style="text-align:left; font-style:italic;">"In your eyes, I have found a home. Thank you for being the melody my heart beats to. I love you more than words can express."</p>
+            <button class="btn-back" onclick="nav('page-gifts')">Go Back</button>
+        </div>
+    </div>
+
+    <script>
+        function nav(id) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+        }
+
+        function handleYes() {
+            startHearts();
+            // This attempts to trigger the Spotify play action on click
+            const spotify = document.getElementById('spotify-frame');
+            spotify.src += "&autoplay=1"; 
+            nav('page-gifts');
+        }
+
+        function goNo() {
+            nav('page-no');
+            setTimeout(() => nav('page1'), 2000);
+        }
+
+        function startHearts() {
+            setInterval(() => {
+                const h = document.createElement('div');
+                h.classList.add('heart');
+                h.innerHTML = '❤️';
+                h.style.left = Math.random() * 100 + 'vw';
+                h.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                document.body.appendChild(h);
+                setTimeout(() => h.remove(), 3000);
+            }, 200);
+        }
+    </script>
+</body>
+</html
